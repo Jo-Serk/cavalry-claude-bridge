@@ -1,0 +1,278 @@
+{
+  "meta": {
+    "cavalryVersion": "2.7.2 (3295.13)",
+    "harvestedAt": "2026-09-27",
+    "method": "Created every type from api.getAllLayerTypes(true) one at a time, harvested every attribute where getAttrType()==='enum' via getAttributeDefinition().enumValues + getDropdownNiceName() for each value, then deleted the layer. 'universal' = same attrId+labels seen on every layer type that has it. 'divergent' = attrId exists on multiple layer types but with different labels/values depending on the layer.",
+    "typesTotal": 274,
+    "typesFailedToCreate": [
+      "footageShape: create returned falsy",
+      "compositionReference: create returned falsy"
+    ],
+    "knownGaps": [
+      "generator.direction / distribution.direction / sourceGenerator.direction / inputPoints.direction: type is 'enum' but getDropdownNiceName returns '' on gridDistribution (icon-button UI, e.g. Flow Columns/Flow Rows). Same attrId returns real labels ('Horizontal'/'Vertical') on linearDistribution. Confirmed manually: 0=Flow Columns, 1=Flow Rows for Grid.",
+      "horizontalAlignment index 3 (textShape) returns '' — likely 'Justify', not confirmed.",
+      "masks.N.mode (mask boolean combine type) is type 'int', not 'enum' — no labels available via API at all. Confirmed manually by toggling in the UI: 0=Union, 1=Subtract, 2=Intersect (default), 3=Exclude (not directly confirmed, by elimination).",
+      "Array/compound sub-paths (e.g. masks.0.mode) do not exist via getAttributes()/hasAttribute() until at least one array element exists (api.addArrayIndex first)."
+    ]
+  },
+  "universal": {
+    "levelMode": {"0": "Custom...", "1": "Text (Lines)", "2": "Text (Words)", "3": "Text (Characters)"},
+    "mode_numberOfDivisions": {"_attrId": "mode", "_note": "addDivisions-style", "0": "Number of Divisions", "1": "Edge Length"},
+    "distribution.direction": {"confirmed": false, "0": "", "1": ""},
+    "distribution.distributionMode": {"0": "Fit", "1": "Step"},
+    "indexMode": {"0": "Line", "1": "Word", "2": "Character"},
+    "supersInferiorsMode": {"0": "None", "1": "Superscript", "2": "Subscript"},
+    "blendMode": {"3": "Normal", "12": "Plus", "14": "Screen", "15": "Overlay", "16": "Darken", "17": "Lighten", "18": "Color Dodge", "19": "Color Burn", "20": "Hard Light", "21": "Soft Light", "22": "Difference", "23": "Exclusion", "24": "Multiply", "25": "Hue", "26": "Saturation", "27": "Color", "28": "Luminosity", "30": "Alpha Add", "_note": "base set; some layers add 32=Plus Darker, 1=Replace, 4-11=Destination/Source composite modes, 13=Modulate, 29=Persist Opacity — see divergent.blendMode for the per-layer superset"},
+    "offsetAnimationMode": {"0": "None", "1": "Start at In Frame", "2": "Finish at Out Frame"},
+    "directionMode": {"0": "Left", "1": "Right", "2": "Top", "3": "Bottom"},
+    "opacityMode": {"0": "None", "1": "Fade Up", "2": "Fade Down"},
+    "parentTimingMode": {"0": "Normal", "1": "Random", "2": "Middle out"},
+    "positionMode": {"0": "None", "1": "Slide From Composition Edge", "2": "Drift", "3": "Zoom"},
+    "progressMode": {"0": "Single Progress Control", "1": "Precise Progress Controls"},
+    "rotationMode": {"0": "None", "1": "Spin", "2": "Swing From Left", "3": "Swing From Right", "4": "Swing From Top", "5": "Swing From Bottom", "6": "Swing From Centre Horizontal", "7": "Swing From Centre Vertical"},
+    "scaleFromMode": {"0": "Path Pivot Point", "1": "Path Centre", "2": "Layer Pivot"},
+    "scaleMode_stagger": {"_attrId": "scaleMode", "0": "None", "1": "Scale Up", "2": "Scale Down"},
+    "timingMode": {"0": "Normal", "1": "Random", "2": "Middle out"},
+    "visibilityMode": {"0": "None", "1": "Appear", "2": "Dissapear"},
+    "maskShapeMode": {"0": "Rectangle", "1": "Ellipse"},
+    "matteApplyMode": {"0": "Filter Input", "1": "Clip Output"},
+    "matteTileMode": {"0": "Clamp", "1": "Repeat", "2": "Decal"},
+    "clippingMode": {"0": "Normal (Anti-Aliasing)", "1": "Best (Offscreen Anti-Aliasing)", "2": "Fast (No Anti-Aliasing)"},
+    "guideLayer": {"0": "Off", "1": "On (Visible in Pre-Compositions)", "2": "On (Invisible in Pre-Compositions)"},
+    "horizontalLayoutAlignment": {"0": "Ignore", "1": "Leading", "2": "Centre", "3": "Trailing"},
+    "forceLottieBake": {"0": "Automatic", "1": "Animated Mesh", "2": "Animated Mesh & Materials", "3": "Nuclear", "4": "Still"},
+    "webExport": {"0": "Export if Visible", "1": "Always Export", "2": "Never Export"},
+    "motionBlur": {"0": "None", "1": "Full", "2": "Transform Only (Fast)"},
+    "schedulingGroupMode": {"0": "Use", "1": "Ignore", "2": "Use Children"},
+    "matteMode": {"4": "Alpha", "5": "Alpha Inverted"},
+    "verticalLayoutAlignment": {"0": "Ignore", "1": "Top", "2": "Middle", "3": "Bottom"},
+    "stroke.align": {"0": "Centre", "1": "Inner", "2": "Outer"},
+    "stroke.capStyle": {"0": "Flat", "1": "Round", "2": "Projecting"},
+    "stroke.colorMode": {"0": "Single Color", "1": "Gradient"},
+    "stroke.dashPatternMode": {"0": "Pixels", "1": "Percentage"},
+    "stroke.gradientMode": {"0": "RGB Interpolation", "1": "HSV Interpolation (Short Path)", "2": "HSV Interpolation (Long Path)"},
+    "stroke.joinStyle": {"0": "Mitre", "1": "Round", "2": "Bevel"},
+    "direction_horizontalVertical": {"_attrId": "direction", "0": "Horizontal", "1": "Vertical"},
+    "horizontalPin": {"0": "Centre", "1": "Left", "2": "Right"},
+    "verticalPin": {"0": "Middle", "1": "Top", "2": "Bottom"},
+    "radiusMode_perSubMesh": {"_attrId": "radiusMode", "0": "Per Sub-Mesh", "1": "Per Point"},
+    "breakingMode_forceDistanceTime": {"_attrId": "breakingMode", "0": "Force", "1": "Distance", "2": "Time"},
+    "samplingQuality": {"0": "Nearest Neighbour", "1": "Bilinear", "2": "Catmull-Rom", "3": "Mitchell"},
+    "cameraType": {"0": "Freeform", "1": "Look At", "2": "Guide"},
+    "fillRule": {"0": "Even Odd", "1": "Winding"},
+    "filterQuality": {"0": "None (Fastest)", "1": "Bilinear", "2": "Mipmaps (Use For Scaling Down)", "3": "Bicubic (Use For Scaling Up)"},
+    "screenReplaceMethod": {"0": "None", "1": "Source", "2": "Hard Color", "3": "Soft Color"},
+    "viewMode": {"0": "Final Result", "1": "Source", "2": "Alpha", "4": "Status"},
+    "lensType": {"0": "Fisheye/ Barrel Distortion", "1": "Concave"},
+    "gradientMode_rgbEtc": {"_attrId": "gradientMode", "0": "RGB Interpolation", "1": "HSV Interpolation (Short Path)", "2": "HSV Interpolation (Long Path)"},
+    "operation_comparison": {"_attrId": "operation", "0": "Less Than", "1": "Greater Than", "2": "Equal To", "3": "Not Equal To", "4": "Less Than Or Equal To", "5": "Greater Than Or Equal To"},
+    "groupMode": {"0": "Artboard", "1": "Individual Layers"},
+    "autoBezierMode": {"0": "Shoulder Both", "1": "Shoulder Target", "2": "Shoulder Source", "3": "Projection Vectors"},
+    "lineType": {"0": "Linear", "2": "Auto Bézier"},
+    "sourceGenerator.direction": {"0": "Horizontal", "1": "Vertical"},
+    "sourceGenerator.distributionMode": {"0": "Fit", "1": "Step"},
+    "targetMode": {"0": "Within Range", "1": "Nearest", "2": "Point Index"},
+    "lifespanMode": {"0": "None", "1": "Lifespan", "2": "Age"},
+    "shader.blendMode": {"1": "Replace", "3": "Normal", "4": "Destination Over", "5": "Source In", "6": "Destination In", "7": "Source Out", "8": "Destination Out", "9": "Source Atop", "10": "Destination Atop", "11": "Xor", "12": "Plus", "13": "Modulate", "14": "Screen", "15": "Overlay", "16": "Darken", "17": "Lighten", "18": "Color Dodge", "19": "Color Burn", "20": "Hard Light", "21": "Soft Light", "22": "Difference", "23": "Exclusion", "24": "Multiply", "25": "Hue", "26": "Saturation", "27": "Color", "28": "Luminosity"},
+    "shader.fracMode": {"0": "FBM", "1": "Turbulent", "2": "Ridged"},
+    "shader.noiseShaderType": {"0": "Perlin Noise", "1": "Simplex Noise", "2": "Cellular Noise"},
+    "sampleMode_luma": {"_attrId": "sampleMode", "0": "Luma (Gamma Corrected)", "1": "Saturation", "2": "Value", "3": "Red Channel", "4": "Green Channel", "5": "Blue Channel", "6": "Average"},
+    "curveInterpolation": {"0": "Linear", "1": "Sine Wave"},
+    "emissionMode": {"0": "Once", "1": "Every Frame", "2": "Rate per Second"},
+    "generator.direction": {"confirmed": false, "0": "", "1": "", "_manuallyConfirmed": {"0": "Flow Columns (Grid)", "1": "Flow Rows (Grid) / Vertical (Linear, where it IS confirmed=true, labels Horizontal/Vertical)"}},
+    "generator.distributionMode": {"0": "Fit", "1": "Step"},
+    "greyscaleMode": {"0": "Luma (Gamma Corrected)", "1": "Average", "2": "Saturation", "3": "Value", "4": "Red Channel", "5": "Green Channel", "6": "Blue Channel"},
+    "pattern_custom": {"_attrId": "pattern", "0": "Custom", "1": "White Noise", "2": "Bayer", "3": "Bricks", "4": "Stripes", "5": "Bubbles", "6": "Virus", "7": "Blue Noise"},
+    "algorithm": {"0": "Sobel", "1": "Canny"},
+    "greyScaleMode": {"0": "Luma (Gamma Corrected)", "1": "Average", "2": "Saturation", "3": "Value", "4": "Red Channel", "5": "Green Channel", "6": "Blue Channel"},
+    "angleMode": {"0": "Path Tangent", "1": "Custom...", "2": "Path Curvature", "3": "Arc"},
+    "arcDirection": {"0": "Normal", "1": "Inverted"},
+    "lengthMode": {"0": "Pixels", "1": "Percentage of Length"},
+    "pathMode": {"0": "Filled Path", "1": "Path Edges"},
+    "shapeType_circleRectangle": {"_attrId": "shapeType", "0": "Circle", "1": "Rectangle", "2": "Linear", "3": "Sweep", "4": "Shape"},
+    "physicsMode": {"0": "Normal", "1": "Replace"},
+    "groundMode": {"0": "Off", "1": "Composition Bottom", "2": "Composition Edges"},
+    "timeStep": {"0": "60 Hz", "1": "120 Hz", "2": "240 Hz"},
+    "quality": {"0": "Low", "1": "Medium", "2": "High"},
+    "drawMode": {"0": "Result", "1": "Glow Input"},
+    "inputPoints.direction": {"0": "Horizontal", "1": "Vertical"},
+    "inputPoints.distributionMode": {"0": "Fit", "1": "Step"},
+    "tiling_clampRepeatMirrorDecal": {"_attrId": "tiling", "0": "Clamp", "1": "Repeat", "2": "Mirror", "3": "Decal"},
+    "monochromeGrain": {"0": "Color", "1": "Monochrome"},
+    "logGrain": {"0": "Linear", "1": "Log"},
+    "orderingPolicy_layerOrderAlphaShuffle": {"_attrId": "orderingPolicy", "0": "Layer Order", "1": "Alphabetical", "2": "Shuffle"},
+    "sequenceMode": {"0": "Static", "1": "Animating"},
+    "channel_rgb": {"_attrId": "channel", "0": "RGB", "1": "Red", "2": "Green", "3": "Blue", "4": "Alpha", "5": "Luminance"},
+    "tilingX_noMirror": {"_attrId": "tilingX", "0": "Clamp", "1": "Repeat", "3": "Decal"},
+    "tilingY_noMirror": {"_attrId": "tilingY", "0": "Clamp", "1": "Repeat", "3": "Decal"},
+    "missingImageMode": {"0": "Noise", "1": "Nearest Frame", "2": "Black"},
+    "alignContent": {"0": "Flex Start", "1": "Flex End", "2": "Centre", "3": "Space Between", "4": "Space Around", "5": "Space Evenly"},
+    "spacingMode": {"0": "Manual Spacers", "1": "Flex Start", "2": "Flex End", "3": "Centre", "4": "Space Between", "5": "Space Around", "6": "Space Evenly"},
+    "wrapMode": {"0": "No Wrap", "1": "Wrap", "2": "Wrap Reverse"},
+    "shape_lineCircle": {"_attrId": "shape", "0": "Line", "1": "Circle"},
+    "outputMode_unitRatio": {"_attrId": "outputMode", "0": "Unit", "1": "Ratio"},
+    "debugMode": {"0": "Final Result", "1": "Luminance"},
+    "modulateMode": {"0": "Remainder", "1": "Pass / Fail", "2": "Custom Pattern"},
+    "fracMode": {"0": "FBM", "1": "Turbulent", "2": "Ridged"},
+    "noiseShaderType": {"0": "Perlin Noise", "1": "Simplex Noise", "2": "Cellular Noise"},
+    "timeMode": {"0": "Seconds", "1": "Minutes (BPM)"},
+    "trigType": {"0": "Sine", "1": "Cosine", "2": "Tangent"},
+    "waveType": {"0": "Normal", "1": "Square", "2": "Triangle", "3": "Sawtooth", "4": "Custom..."},
+    "align": {"0": "Centre", "1": "Inner", "2": "Outer"},
+    "capStyle": {"0": "Flat", "1": "Round", "2": "Projecting"},
+    "joinStyle": {"0": "Mitre", "1": "Round", "2": "Bevel"},
+    "directionType": {"0": "Angle", "1": "Inwards", "2": "Outward"},
+    "emitterShape": {"0": "Point", "1": "Circle", "2": "Square", "3": "Input Shape", "4": "Input Shape Perimeter"},
+    "emitterType": {"0": "Time", "1": "Distance"},
+    "colorMode_colorOverLifespan": {"_attrId": "colorMode", "0": "Color", "1": "Color Over Lifespan"},
+    "imageBlendMode": {"1": "Replace", "3": "Normal", "4": "Inverse", "5": "Color Alpha", "10": "Image Alpha", "12": "Plus", "14": "Screen", "15": "Overlay", "16": "Darken", "17": "Lighten", "18": "Color Dodge", "19": "Color Burn", "20": "Hard Light", "21": "Soft Light", "22": "Difference", "23": "Exclusion", "24": "Multiply", "25": "Hue", "26": "Saturation", "27": "Color", "28": "Luminosity"},
+    "imageQuality": {"0": "None (Fastest)", "1": "Bicubic (Useful for Scaling up)"},
+    "shapeStyle": {"0": "Rectangle", "1": "Ellipse", "2": "Input Shape"},
+    "closedPathMode": {"0": "Single Sided", "1": "Double Sided"},
+    "openPathMode": {"1": "Joined", "2": "Flat", "3": "Projecting", "4": "Round"},
+    "sortMode": {"0": "Luma (Gamma Corrected)", "1": "Average", "2": "Saturation", "3": "Value", "4": "Red Channel", "5": "Green Channel", "6": "Blue Channel"},
+    "pixelType": {"0": "Normal", "1": "Triangle", "2": "Squared Triangle", "3": "Hexagon Triangle"},
+    "generator.shapeType": {"0": "Rectangle", "1": "Ellipse"},
+    "wipeMode": {"0": "Counter-Clockwise", "1": "Clockwise", "2": "Both"},
+    "centreMode": {"0": "Custom Centre", "1": "Shapes' Centre", "2": "Smallest Circle"},
+    "generator.gapType": {"0": "None", "1": "Alternating", "2": "Fixed Width"},
+    "generator.orientation": {"0": "Horizontal", "1": "Vertical"},
+    "deformerMode": {"0": "X", "1": "Y", "2": "Both"},
+    "roundingMode": {"0": "Round", "1": "Round Up", "2": "Round Down"},
+    "noiseType": {"0": "Stapl", "1": "Luka", "2": "Naki", "3": "Nutous", "4": "Poxo", "5": "Stupl", "6": "Pezo", "7": "Box", "8": "Blistered Turbulence", "9": "Buya", "10": "Cell", "11": "Cranal", "12": "Dents", "13": "Displaced Turbulence", "14": "Hama", "15": "Mod", "16": "Sema", "17": "Variable Length"},
+    "lineMode": {"0": "Count", "1": "Size"},
+    "extensionMode": {"0": "Start", "1": "End", "2": "Both"},
+    "renderQuality": {"0": "High", "1": "Medium", "2": "Low", "3": "Very Low"},
+    "aSource": {"1": "Alpha", "2": "Red", "3": "Green", "4": "Blue", "5": "Luminance", "9": "On", "10": "Off"},
+    "bSource": {"1": "Alpha", "2": "Red", "3": "Green", "4": "Blue", "5": "Luminance", "9": "On", "10": "Off"},
+    "gSource": {"1": "Alpha", "2": "Red", "3": "Green", "4": "Blue", "5": "Luminance", "9": "On", "10": "Off"},
+    "rSource": {"1": "Alpha", "2": "Red", "3": "Green", "4": "Blue", "5": "Luminance", "9": "On", "10": "Off"},
+    "distribution.shapeType": {"0": "Rectangle", "1": "Ellipse"},
+    "glowBlendMode": {"3": "Normal", "12": "Plus", "14": "Screen", "15": "Overlay", "16": "Darken", "17": "Lighten", "18": "Color Dodge", "19": "Color Burn", "20": "Hard Light", "21": "Soft Light", "22": "Difference", "23": "Exclusion", "24": "Multiply", "25": "Hue", "26": "Saturation", "27": "Color", "28": "Luminosity"},
+    "frequencyScale": {"0": "Logarithmic", "1": "Mel", "2": "Bark", "3": "Linear"},
+    "limitType": {"0": "Top Speed", "1": "Drag"},
+    "visibility_bothFrontBack": {"_attrId": "visibility", "0": "Both", "1": "Front", "2": "Back"},
+    "pin": {"0": "Middle", "1": "Top", "2": "Bottom"},
+    "generator.directionMode": {"0": "Start", "1": "End", "2": "Random"},
+    "generator.indexMode": {"0": "Word", "1": "Line", "2": "Paragraph", "3": "Document"},
+    "generator.mode_regexAll": {"_attrId": "generator.mode", "0": "Regex", "2": "All"},
+    "generator.shuffleType": {"0": "Unicode Offset", "1": "Random Alphanumeric", "2": "Custom String"},
+    "dashPatternMode": {"0": "Pixels", "1": "Percentage"},
+    "fillReplacementMode": {"0": "Replace All", "1": "Replace Missing", "2": "Replace Existing"},
+    "strokeReplacementMode": {"0": "Replace All", "1": "Replace Missing", "2": "Replace Existing"},
+    "horizontalAlignment": {"0": "Left", "1": "Centre", "2": "Right", "3": "", "_note": "index 3 unconfirmed, likely Justify"},
+    "backgroundMode": {"0": "Line", "1": "Word", "2": "Character", "3": "Paragraph", "4": "Document"},
+    "verticalAlignment": {"0": "Top", "1": "Middle", "2": "Bottom", "3": "Baseline"},
+    "countMode": {"0": "Accumulate", "1": "Trigger"},
+    "countTarget": {"0": "Time Markers", "1": "Beats per Minute", "2": "Seconds"},
+    "pathType": {"0": "Lines", "1": "Béziers"},
+    "fadeMode": {"0": "Off", "2": "Multiply by Value"},
+    "vignetteShape": {"0": "Circle", "1": "Shape"},
+    "style_flatGreyscale": {"_attrId": "style", "0": "Flat", "1": "Greyscale", "2": "Euclidean", "3": "Manhattan"},
+    "type_normalHierarchical": {"_attrId": "type", "0": "Normal", "1": "Hierarchical"},
+    "noiseAffects": {"0": "Spiral Strength", "1": "Centripetal Strength", "2": "Both Forces", "3": "Angular Force"}
+  },
+  "divergent": {
+    "mode": {
+      "_note": "Highly overloaded attrId, meaning depends entirely on the layer type",
+      "applyFontSize/applyFontStyle/applyOpenType/applyTextMaterial/applyTypeface": {"0": "Regex", "1": "Specific Indices", "2": "All"},
+      "assetFromSmartFolder": {"0": "Path", "1": "Auto Index", "2": "Specific Index"},
+      "bevel": {"0": "Fillet", "1": "Chamfer"},
+      "colorCollisionEvent": {"0": "Fill", "1": "Stroke", "2": "Fill and Stroke"},
+      "colorInfo": {"0": "Hue", "1": "Saturation", "2": "Value"},
+      "contrastingColor": {"0": "Most Contrasting", "1": "Least Contrasting", "2": "3:1", "3": "4.5:1", "4": "7:1", "5": "Custom Ratio..."},
+      "ditheringFilter": {"0": "Blend", "1": "Classic", "2": "Greyscale"},
+      "fillRule": {"0": "Even Odd", "1": "Winding"},
+      "flattenShapeLayers": {"0": "Single Path", "1": "Single Layer (keeps materials)"},
+      "frame": {"0": "Frame", "1": "Seconds"},
+      "glowFilter": {"0": "Simple Controls", "1": "Individual Channel Controls"},
+      "imageToShapes": {"0": "Rectangles", "1": "Circles"},
+      "isolinesShape": {"0": "Image", "1": "Shape Layer"},
+      "knot": {"0": "Over First", "1": "Under First", "2": "Gaps on Both", "3": "Geometric"},
+      "localTime": {"0": "Seconds through Minute", "1": "Seconds through Hour", "2": "Seconds through Day", "3": "Seconds through Week", "4": "Seconds through Month", "5": "Seconds through Year", "6": "Minutes through Hour", "7": "Minutes through Day", "8": "Minutes through Week", "9": "Minutes through Month", "10": "Minutes through Year", "11": "Day of the Week", "12": "Day of the Month", "13": "Day of the Year", "14": "Month of the Year", "15": "Milliseconds through Second", "16": "Hours through Day"},
+      "measure": {"0": "Pivot", "1": "Position"},
+      "morph": {"0": "Simple Morph", "1": "Wave Morph"},
+      "rangeFalloff": {"0": "Specific Indices", "1": "Percentage", "2": "Transition"},
+      "resamplePath": {"0": "Union", "1": "Simplify"},
+      "reversePathUtility": {"0": "Reverse All", "1": "Reverse Clockwise", "2": "Reverse Counter-Clockwise"},
+      "segmentPath": {"0": "Number of cuts", "1": "Automatic cuts"},
+      "stringLength": {"0": "Characters", "1": "Words", "2": "Lines"},
+      "simpleValueSolver/simpleValue2Solver": {"0": "Accumulate", "1": "Highest", "2": "Lowest", "3": "Velocity"},
+      "visibilityCollisionEvent": {"0": "Visibility", "1": "Opacity"},
+      "wave": {"0": "Sine", "1": "Square", "2": "Sawtooth", "3": "Triangle"},
+      "addDivisions": {"0": "Number of Divisions", "1": "Edge Length"}
+    },
+    "indexMode": {
+      "applyFontStyle": {"0": "Line", "1": "Word"},
+      "subMesh": {"0": "Unique Index", "1": "Child Index"}
+    },
+    "levelMode": {
+      "autoAnimate/bend/blendSubMeshPositions/extractSubMeshes/getSubMeshTransform/meshSolver/squashAndStretch": {"0": "Custom...", "1": "Text (Lines)/ Duplicator", "2": "Text (Words)", "3": "Text (Characters)"},
+      "extrude": {"0": "Custom...", "1": "Text (Lines)/ Duplicator", "2": "Text (Words)", "3": "Text (Characters)", "4": "All"},
+      "subMesh": {"0": "Custom...", "1": "Text (Lines)", "2": "Text (Words)", "3": "Text (Characters)", "4": "All"}
+    },
+    "progressMode": {
+      "autoCrop": {"0": "Percentage", "1": "Size"}
+    },
+    "blendMode": {
+      "_note": "Per-layer supersets of the universal base set. Common additions: 1=Replace, 4=Destination Over, 5=Source In, 6=Destination In, 7=Source Out, 8=Destination Out, 9=Source Atop, 10=Destination Atop, 11=Xor, 13=Modulate, 29=Persist Opacity, 32=Plus Darker. Shapes/duplicator/component/etc. tend to include 30+32; filters/shaders tend to include 1/4-11/13 instead. See raw harvest output in chat history for the exact per-type list if needed (~60 layer types listed)."
+    },
+    "direction": {
+      "distortEdges": {"0": "Both", "1": "Outward", "2": "Inward"},
+      "flare": {"0": "Vertical", "1": "Horizontal"},
+      "pixelSortingFilter": {"0": "Vertical", "1": "Horizontal"}
+    },
+    "directionMode": {
+      "distortionFilter": {"0": "Lens", "1": "Directional", "2": "Warp"}
+    },
+    "gradientMode": {
+      "gradientMapFilter/gradientShader": {"0": "RGB Interpolation", "1": "HSV Interpolation (Short Path)", "2": "HSV Interpolation (Long Path)", "3": "Oklab Interpolation", "4": "LCH Interpolation (Short Path)", "5": "LCH Interpolation (Long Path)"},
+      "multiPointGradientShader": {"0": "RGB Interpolation", "1": "OkLab Interpolation"}
+    },
+    "pattern": {
+      "halftoneFilter": {"0": "Classic", "1": "Strokes", "2": "Ink", "3": "Quads"}
+    },
+    "sampleMode": {
+      "halftoneFilter": {"0": "Luma (Gamma Corrected)", "1": "Average", "2": "Saturation", "3": "Value", "4": "Red Channel", "5": "Green Channel", "6": "Blue Channel", "7": "Custom RGB Multipliers"}
+    },
+    "scaleMode": {
+      "imageModifier/particleShape": {"0": "Stretch", "1": "Fit Vertically", "2": "Fit Horizontally"},
+      "imageShader": {"0": "None", "1": "Fit Contain", "2": "Fit Height", "3": "Fit Width", "4": "Fit Cover"}
+    },
+    "tilingX": { "imageShader": {"0": "Clamp", "1": "Repeat", "2": "Mirror", "3": "Decal"} },
+    "tilingY": { "imageShader": {"0": "Clamp", "1": "Repeat", "2": "Mirror", "3": "Decal"} },
+    "channel": {
+      "invert/levels": {"0": "RGB", "1": "Red", "2": "Green", "3": "Blue", "4": "Alpha"}
+    },
+    "operation": {
+      "logic": {"0": "AND (both)", "1": "OR (one or both)", "2": "XOR (one but not both)"},
+      "math": {"0": "Add", "1": "Subtract", "2": "Multiply", "3": "Divide", "4": "Modulus", "5": "FModulus", "6": "Max", "7": "Min", "8": "Average", "9": "Power", "10": "Square Root", "11": "Sine", "12": "Cosine", "13": "Floor", "14": "Ceiling", "15": "Round", "16": "Absolute"},
+      "math2": {"0": "Add", "1": "Subtract", "2": "Multiply"},
+      "math3": {"0": "Add", "1": "Subtract"}
+    },
+    "tiling": {
+      "mirrorFilter": {"0": "Decal", "1": "Repeat"}
+    },
+    "shape": {
+      "null": {"0": "Cross", "1": "Circle", "2": "Square"}
+    },
+    "breakingMode": {
+      "pinConstraint": {"0": "Force", "1": "Angle", "2": "Time"}
+    },
+    "orderingPolicy": {
+      "schedulingGroup": {"0": "Layer Order", "1": "Alphabetical"}
+    },
+    "outputMode": {
+      "spreadsheet": {"0": "Data", "1": "Sort Order (Ascending)", "2": "Sort Order (Descending)"}
+    },
+    "colorMode": {
+      "strokeMaterial": {"0": "Single Color", "1": "Gradient"}
+    },
+    "opacityMode": {
+      "subMesh": {"0": "Replace", "1": "Multiply Existing"}
+    },
+    "radiusMode": {
+      "textShape": {"0": "All", "1": "Individual"}
+    }
+  }
+}

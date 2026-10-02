@@ -1,0 +1,90 @@
+{
+  "manifest_version": "0.3",
+  "name": "cavalry-claude-bridge",
+  "display_name": "Cavalry Bridge",
+  "version": "1.1.0",
+  "description": "Let Claude read, edit and preview your Cavalry scenes.",
+  "long_description": "Connects Claude Desktop to Cavalry through the Stallion bridge. Claude can inspect the scene (layers, attributes, connections), change it with JavaScript, connect nodes, switch Duplicator distributions and render a frame to check the result. Requires Cavalry with Stallion running (Scripts > Stallion).",
+  "author": {
+    "name": "Cavalry Bridge contributors"
+  },
+  "license": "MIT",
+  "keywords": [
+    "cavalry",
+    "motion design",
+    "animation",
+    "stallion"
+  ],
+  "server": {
+    "type": "node",
+    "entry_point": "server/index.js",
+    "mcp_config": {
+      "command": "node",
+      "args": [
+        "${__dirname}/server/index.js"
+      ],
+      "env": {
+        "CAVALRY_PORT": "${user_config.stallion_port}"
+      }
+    }
+  },
+  "tools": [
+    {
+      "name": "cavalry_get_scene",
+      "description": "Snapshot of the scene: hierarchy, changed attributes, expressions, animation and connections."
+    },
+    {
+      "name": "cavalry_execute_script",
+      "description": "Run JavaScript inside Cavalry and return the result, console output and errors."
+    },
+    {
+      "name": "cavalry_connect",
+      "description": "Connect two nodes; creates missing array slots and verifies the result."
+    },
+    {
+      "name": "cavalry_set_distribution",
+      "description": "Change a Duplicator's distribution type (circle, fibonacci, grid, ...)."
+    },
+    {
+      "name": "cavalry_render_frame",
+      "description": "Render the current frame to a PNG so Claude can see the result."
+    },
+    {
+      "name": "cavalry_api_search",
+      "description": "Search the installed Cavalry scripting API by name."
+    },
+    {
+      "name": "cavalry_help",
+      "description": "Short verified notes about the Cavalry API and its pitfalls, by topic."
+    },
+    {
+      "name": "cavalry_get_keyframes",
+      "description": "Read an attribute's keyframes as {id, time, value}."
+    },
+    {
+      "name": "cavalry_parent",
+      "description": "Parent or unparent a layer (hierarchy, not an attribute connection)."
+    },
+    {
+      "name": "cavalry_lookup_enum",
+      "description": "Resolve an enum value's human-readable label, from a bundled database first."
+    }
+  ],
+  "user_config": {
+    "stallion_port": {
+      "type": "number",
+      "title": "Stallion port",
+      "description": "Port shown in the Stallion window in Cavalry (\"Listening on 127.0.0.1:8080\"). Change it only if yours is different.",
+      "default": 8080,
+      "required": false,
+      "min": 1024,
+      "max": 65535
+    }
+  },
+  "compatibility": {
+    "platforms": [
+      "darwin",
+      "win32"
+    ]
+  }
+}
